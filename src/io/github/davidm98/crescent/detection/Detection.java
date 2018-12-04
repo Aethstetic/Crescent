@@ -9,14 +9,16 @@ import io.github.davidm98.crescent.info.Profile;
 
 public class Detection {
 
-	private static final int ALERT_INTERVAL = profile.getLastAlertTime() < Crescent.getInstance().getConfig()
-			.getInt("alertInterval");
-
 	private final Profile profile;
+	/*private final long ALERT_INTERVAL =  Crescent.getInstance().getConfig() .getInt("alertInterval") - profile.getLastAlertTime(); */
+			/**.getInt("alertInterval"); **/
+
+	/** private final Profile profile;**/
 	private final Check check;
 	private final String checkVersion;
 	private final double certainty;
 	private final long time;
+	private final long ALERT_INTERVAL;
 
 	/**
 	 * @param profile
@@ -25,6 +27,7 @@ public class Detection {
 	 *            The type of cheat the player has used to set of the detection
 	 */
 	public Detection(Profile profile, Check check, String checkVersion, double certainty) {
+		this.ALERT_INTERVAL = Crescent.getInstance().getConfig() .getInt("alertInterval") - profile.getLastAlertTime();;
 		this.profile = profile;
 		this.check = check;
 		// The time that the detection was triggered.
